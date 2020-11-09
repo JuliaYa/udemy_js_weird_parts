@@ -76,6 +76,44 @@ This means is that before your code begins to be executed line by line the JS en
 A moment where it actually executes your code line by line, that's when these kind of assigments are set, where variables equals something.
 All variables in JS are initially set to undefined, and functions a sitting in memory in their entirety.
 That's why it's a bad idea to rely on hoisting in any way.
-Just use variables and functions after initiation.
+Just use variables and functions after declaration.
 
 The fact is that what I wrote is not what's directly being executed but the JS engine is taking my code and making decisions.
+
+## JavaScript and 'undefined'
+
+'undefined' and error 'a is not defined' not the same thing.
+
+'undefined' is a special value/keyword that JS init internally. It means that variable hasn't been set.
+
+```javascript
+var a;
+console.log(a);     // undefned
+
+if(a === undefined) {
+    console.log('a is undefined!'); // a is undefined!
+} else {
+    console.log('a is defined!);
+}
+```
+
+```javascript
+console.log(a);     
+
+// uncaught ReferenceError: a is not defined (don't have it in memory)
+// and app will stop
+
+if(a === undefined) {
+    console.log('a is undefined!'); // a is undefined!
+} else {
+    console.log('a is defined!);
+}
+```
+### Never do that!
+```javascript
+a = udefined;
+```
+It can be hard with debugging later.
+
+Alternative meaning for **'underfined'** - **I've never set this value**
+
