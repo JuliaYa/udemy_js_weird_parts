@@ -117,3 +117,22 @@ It can be hard with debugging later.
 
 Alternative meaning for **'underfined'** - **I've never set this value**
 
+## The execution context: code execution
+
+### Execution phase
+
+Global Object       this            Outer Environment
+
+                Runs Your Code
+
+```javascript
+function b() {
+    console.log('Called b!');
+}
+b(); // Called b!
+
+console.log(a); // underfined
+var a = 'Hello World!';
+console.log(a); // Hello World!
+
+```
