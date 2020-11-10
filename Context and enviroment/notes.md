@@ -170,3 +170,56 @@ a();
 Global Execution Context
 
 Every time when function was called a new execution context is created for that function. The variables within it are set up during the creation phase.
+
+## Functions, context and variable enviroments
+
+**Variable environment**: where the variables live and how they relate to each other in memory.
+
+```javascript
+function b() {
+	var myVar;
+    console.log(myVar); // undefined
+}
+
+function a() {
+	var myVar = 2;
+    console.log(myVar); // 2
+	b();    // undefined
+}
+
+var myVar = 1;
+console.log(myVar); // 1
+a();
+console.log(myVar); // 1
+```
+
+### Execution Stack
+
+        b() EC
+    (myVar undefined)
+
+        a() EC
+    (myVar 2)
+
+Global Execution Context 
+    (myVar 1)
+
+
+**Scope**: where we are able to see the variable.
+
+```javascript
+function b() {
+    console.log(myVar); // 1 (from Global EC)
+}
+
+function a() {
+	var myVar = 2;
+    console.log(myVar); // 2
+	b();    // 1
+}
+
+var myVar = 1;
+console.log(myVar); // 1
+a();
+```
+
