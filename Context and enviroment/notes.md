@@ -136,3 +136,37 @@ var a = 'Hello World!';
 console.log(a); // Hello World!
 
 ```
+
+## Single threaded, synchronous execution
+
+**Single threaded**: one command at a time.
+JS behaves in a single threaded manner.
+
+Synchronous: one at a time. And in order.
+
+In JS only one thing is happening at the time.
+
+## Function invocation and the execution stack
+
+Invocation: running a function
+
+In JS, by using parenthesis ()
+
+```javascript
+function b() {}
+
+function a() {
+    b();
+}
+
+a();
+```
+### Execution Stack
+
+        b() EC
+
+        a() EC
+
+Global Execution Context
+
+Every time when function was called a new execution context is created for that function. The variables within it are set up during the creation phase.
