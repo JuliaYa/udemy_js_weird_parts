@@ -223,3 +223,29 @@ console.log(myVar); // 1
 a();
 ```
 
+## Scope, ES6, and let
+
+**Scope**: where a variable is available in your code and if it's truly the same variable, or a new copy
+
+ES6 or ECMAScript 2015 is introdusing a new way of declaring variables.
+
+**"let"** allows the JS engine to use block scoping.
+
+During the creation phase it still plased in memory and set to undefined, however you not allowed to use it until the line of code is run during the execution phase that actually declares the variable.
+
+```javascript
+if (a > b) {
+    console.log(c);
+    let c = true;
+}
+```
+
+### First
+
+If you tried to use ***c*** in this example before the ```let c = true```, you'd get an error "Cannot access 'c before initialization". It's still in memory but the engine just won't allow it.
+
+### Second
+
+Then let variable declared inside the block ```{...}```, it's only avalable inside that block at that period of time for the running code.
+
+If you have a loop and are running the same code over and over but you have a let statement, you'll actually get a different variable in memory each time the loop is running.
