@@ -10,3 +10,6 @@ Don't imitate, UNDERSTAND
 If you use and read only examples without truly understanding you'll got problems when you need to write code from scratch or solve unusual problem. Language is just a tool and your need to deeply understand it.
 
 After this course you'll be able to understand source code from different frameworks and libraries.
+
+### Philosofy
+Those that learn how things really work under the hood, solve problems better and are better coders overall in the end.
