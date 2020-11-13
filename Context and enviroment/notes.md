@@ -1,12 +1,10 @@
 ## Execution Contexts and Lexical Environments
 
-**Sintax parser**: a program that reads your code and determines what it does and if its grammar is valid. 
+**Syntax parser**: a program that reads your code and determines what it does and whether its grammar is valid. 
 
-Your code                           Computer Instruction
-                        ------>
-function Hello() {                      translation +
-    var str = 'Str';                    other stuff
-}      
+| Your code | Computer Instruction |
+| ----------| -------------------- |
+| ` function Hello() {     var str = 'Str'; } `; | translation + other stuff |
 
 **Lexical environment**: where something sits phisically in the code you write
 
@@ -22,11 +20,11 @@ function Hello() {                      translation +
 **Objects in JS are incredibly important.**
 What we need to properly understand objects in JS:
  
-  **Name/Value pair** is a name which maps to a unique value. The name may be defined more than once, but only can have one value in any given context. That value may be more name/value pairs.
+  *Name/Value pair* is a name which maps to a unique value. The name may be defined more than once, but only can have one value in any given context. That value may be more name/value pairs.
 
-  **Object**: a collection of name value pairs. The simplest definition when talking about JS but not for all PL.
+  *Object* is a collection of name value pairs. The simplest definition when talking about JS but not for all PL.
   ```javascript
-  var Adress = {
+  var Address = {
       street: 'Toreza',
       building: 95,
       apartment: {
@@ -37,7 +35,7 @@ What we need to properly understand objects in JS:
   ``` 
 
 ## The Global Environment and The Global Object
-JS engine is creating **Global Object** and **this** every time.
+JS engine is creating **Global Object** and `this` every time.
 GO in browsers is the Window.
 Each window(tab) has its own EC and its own global EC.
 On global level in browsers GO(window) = this.
@@ -74,7 +72,7 @@ This means is that before your code begins to be executed line by line the JS en
 ### Execution phase
 
 A moment where it actually executes your code line by line, that's when these kind of assigments are set, where variables equals something.
-All variables in JS are initially set to undefined, and functions a sitting in memory in their entirety.
+All variables in JS are initially set to undefined, and functions are sitting in memory in their entirety.
 That's why it's a bad idea to rely on hoisting in any way.
 Just use variables and functions after declaration.
 
@@ -82,18 +80,18 @@ The fact is that what I wrote is not what's directly being executed but the JS e
 
 ## JavaScript and 'undefined'
 
-'undefined' and error 'a is not defined' not the same thing.
+`undefined` and error 'a is not defined' not the same thing.
 
-'undefined' is a special value/keyword that JS init internally. It means that variable hasn't been set.
+`undefined` is a special value/keyword that JS init internally. It means that variable hasn't been set.
 
 ```javascript
 var a;
 console.log(a);     // undefned
 
 if(a === undefined) {
-    console.log('a is undefined!'); // a is undefined!
+  console.log('a is undefined!'); // a is undefined!
 } else {
-    console.log('a is defined!);
+  console.log('a is defined!);
 }
 ```
 
@@ -104,9 +102,9 @@ console.log(a);
 // and app will stop
 
 if(a === undefined) {
-    console.log('a is undefined!'); // a is undefined!
+  console.log('a is undefined!'); // a is undefined!
 } else {
-    console.log('a is defined!);
+  console.log('a is defined!);
 }
 ```
 ### Never do that!
@@ -121,13 +119,11 @@ Alternative meaning for **'underfined'** - **I've never set this value**
 
 ### Execution phase
 
-Global Object       this            Outer Environment
-
-                Runs Your Code
+Global Object this Outer Environment Runs Your Code
 
 ```javascript
 function b() {
-    console.log('Called b!');
+  console.log('Called b!');
 }
 b(); // Called b!
 
@@ -142,7 +138,7 @@ console.log(a); // Hello World!
 **Single threaded**: one command at a time.
 JS behaves in a single threaded manner.
 
-Synchronous: one at a time. And in order.
+Synchronous: one in a time. And in order.
 
 In JS only one thing is happening at the time.
 
@@ -156,16 +152,18 @@ In JS, by using parenthesis ()
 function b() {}
 
 function a() {
-    b();
+  b();
 }
 
 a();
 ```
+
 ### Execution Stack
+```
+b() EC
 
-        b() EC
-
-        a() EC
+a() EC
+```
 
 Global Execution Context
 
@@ -177,14 +175,14 @@ Every time when function was called a new execution context is created for that 
 
 ```javascript
 function b() {
-	var myVar;
-    console.log(myVar); // undefined
+ var myVar;
+ console.log(myVar); // undefined
 }
 
 function a() {
-	var myVar = 2;
-    console.log(myVar); // 2
-	b();    // undefined
+ var myVar = 2;
+ console.log(myVar); // 2
+ b();    // undefined
 }
 
 var myVar = 1;
@@ -209,13 +207,13 @@ Global Execution Context
 
 ```javascript
 function b() {
-    console.log(myVar); // 1 (from Global EC)
+ console.log(myVar); // 1 (from Global EC)
 }
 
 function a() {
-	var myVar = 2;
-    console.log(myVar); // 2
-	b();    // 1
+ var myVar = 2;
+ console.log(myVar); // 2
+ b();    // 1
 }
 
 var myVar = 1;
@@ -235,8 +233,8 @@ During the creation phase it still plased in memory and set to undefined, howeve
 
 ```javascript
 if (a > b) {
-    console.log(c);
-    let c = true;
+ console.log(c);
+ let c = true;
 }
 ```
 
