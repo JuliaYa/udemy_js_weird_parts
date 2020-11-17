@@ -113,7 +113,7 @@ a = udefined;
 ```
 It can be hard with debugging later.
 
-Alternative meaning for **'underfined'** - **I've never set this value**
+Alternative meaning for **'undefined'** - **I've never set this value**
 
 ## The execution context: code execution
 
@@ -161,11 +161,9 @@ a();
 ### Execution Stack
 ```
 b() EC
-
 a() EC
-```
-
 Global Execution Context
+```
 
 Every time when function was called a new execution context is created for that function. The variables within it are set up during the creation phase.
 
@@ -247,3 +245,70 @@ If you tried to use ***c*** in this example before the ```let c = true```, you'd
 Then let variable declared inside the block ```{...}```, it's only avalable inside that block at that period of time for the running code.
 
 If you have a loop and are running the same code over and over but you have a let statement, you'll actually get a different variable in memory each time the loop is running.
+
+
+## What About Asynchronous Callbacks?
+
+**Asyncronous**: more then one at a time
+
+JS doesn't execute asynchronously. It executes code a line at a time.
+
+How JS handle asynchronous click events, callback functions and so on?
+
+### The Browser
+
+ Rendering   <-----> The JS  <------> HTTP 
+ Engine              Engine           Request
+
+ JS Engine doesn't exist by itself, for example, an Internet browser. There are other engines and running pieces of code that are happening outside the JS engine that runs JS when you load it into the browser.
+ 
+ The JS engine has hooks where it can talk to the rendering engine and change what the web page looks like, or go out and request data. But all that is running, while it may be running asynchronously meaning that the rendering engine and JS engine and request are running asynchronously inside the browser, what's happening inside just the JS engine is synchronous.
+
+ **Event Queue**: full of events, notifications of events, that might be happening.
+
+When the browser, somewere outside the JS engine, has an event that inside the JS engine we want to be notified of, it gets placed on the queue. And whether or not we actually have a function that needs to respond to it, we can listen for that event and have that function handle that event, but either way the event gets placed on the queue.
+
+When execution stack is empty JS periodically looks to event queue. And if something is there, it looks to see if a perticular function shood be run when that event was triggered.
+So it sees a click event, it processes that click event and knows there's a function (```clickHandler()```) that needs to be run for that event. JS create the execution context for that function, processed event and next item in the queue moves up, and so on.
+**The event queue won't be processed until the execution stack is empty, until JS is finished running all of that other code line by line.**
+So it isn't really asynchronous!
+What's happening is the browser asynchronously is putting things into the event queue, but the code that is running is still runnning line by line. And when the execution contexts are all gone, then it processes the events.
+
+```javascript
+// long running function
+function waitThreeSeconds() {
+    var ms = 3000 + new Date().getTime();
+    while (new Date() < ms){}
+    console.log('finished function');
+}
+
+function clickHandler() {
+    console.log('click event!');   
+}
+
+// listen for the click event
+document.addEventListener('click', clickHandler);
+
+
+waitThreeSeconds();
+console.log('finished execution');
+```
+If we run the page, click after 3 seconds and look into console output:
+```
+finished function
+finished execution
+click event!
+```
+
+If we run the page, click during 3 seconds and look into console output:
+
+```
+finished function
+finished execution
+click event!
+```
+```click event!``` will be still last again. 
+
+Any events that happen outside of the engine get placed into that queue, and if the execution stack is empty, if JS isn't working on anything else curently, it'll process those events. It'll process the events in the order they happend.
+
+Asynchronous callbacks are possible in JS, but asynchronous part is really about what's happening outside the JS engine via this event loop and list of events.
