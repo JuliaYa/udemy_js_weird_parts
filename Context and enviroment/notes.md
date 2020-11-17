@@ -13,7 +13,7 @@
  
  **Execution context**: a wrapper to help manage the code that is running
 
- Thare are lots of LE. Which one is running is managed via EC. It can contain things beyond what you've written in your code. Cuz our code can be processed a whole other set of programs that someone else wrote.
+ There are lots of LE. Which one is running is managed via EC. It can contain things beyond what you've written in your code. Becase our code can be processed a whole other set of programs that someone else wrote.
 
  ## Conceptual Aside: Name/Value Pairs and Objects
 
@@ -60,14 +60,15 @@ console.log(a); // Hello World!
 
 ### Creation phase
 
-Global Object       this            Outer Environment
+| Global Object | \|   this   \| |  Outer Environment |
+|---------------|----------------|--------------------|
 
-Setup memory space for variables and functions
-                "**HOISTING**"
+| Setup memory space for variables and functions "**HOISTING**"   |
+|-----------------------------------------------------------------|
 
 This means is that before your code begins to be executed line by line the JS engine has already set aside memory space for the variables and functions that you've created in that entire code. So when the code begins to execute line by line, it can access them.
 
-Функции попадают в память целиком, а вот для переменных выделяется место, но значение не присваивается и если написать код с использованием переменной до того как ей присвоено значение он сработает, но значение будет "**undefined**". Если использовать переменную без обьявления, получим ошибку.
+Functions will place to memory as entire block but for variables memory will be reserved without saving it's value. If we use variable before assignment it's value will be ```undefined```. And we get error if use variable without declaration. 
 
 ### Execution phase
 
@@ -113,13 +114,18 @@ a = udefined;
 ```
 It can be hard with debugging later.
 
-Alternative meaning for **'undefined'** - **I've never set this value**
+Alternative meaning for **'undefined'** - I've never set this value
 
 ## The execution context: code execution
 
 ### Execution phase
 
-Global Object this Outer Environment Runs Your Code
+| Global Object | \|   this   \| |  Outer Environment |
+|---------------|----------------|--------------------|
+
+| Runs Your Code   |
+|------------------|
+
 
 ```javascript
 function b() {
@@ -191,13 +197,13 @@ console.log(myVar); // 1
 
 ### Execution Stack
 
-        b() EC
+      b() EC
     (myVar undefined)
 
-        a() EC
+      a() EC
     (myVar 2)
 
-Global Execution Context 
+      Global Execution Context 
     (myVar 1)
 
 
