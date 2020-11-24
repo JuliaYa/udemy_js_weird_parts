@@ -38,7 +38,18 @@ There are six types in JavaScript.
 
 **String** - a sequence of characters ('' and "" can be used). Double quotes can be used to specify that we're dealing with a string.
 
-**Symbol** - used in ES6. It's not fully supported by all browsers. 
+**Symbol** - used in ES6. It's not fully supported by all browsers.
+
 *"The Symbol type allows us to obtain values that cannot be re-created, that is, they are unique and immutable identifiers."*
+
+```javascript
+  Symbol() === Symbol() // false
+```
+
+```javascript
+  const a = Symbol('a');
+  const otherA = Symbol('a');
+  a === otherA // false
+```
 
 (Link to article) [https://latteandcode.medium.com/javascript-do-you-know-the-symbol-type-9dfbf40b6eef]
