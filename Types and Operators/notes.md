@@ -53,3 +53,41 @@ There are six types in JavaScript.
 ```
 
 (Link to article) [https://latteandcode.medium.com/javascript-do-you-know-the-symbol-type-9dfbf40b6eef]
+
+## Operators
+
+**Operator**: special function that is syntactically (written) differently. Kind of special type of functions. Generally, operators take two parameters and return one result.
+
+**Infix notation** means that the function name, the operator, sits between the two parameters.
+
+```javascript
+  3 + 5 // infix
+  +3    // prefix
+  3+    // postfix
+```
+
+## Operator Precedence and Associativity
+
+**Operator Precedence**: which operator function gets called first. Finctions are called in order of precedence. The higher precedence wins.
+
+**Associativity**: what order operator functions get called in: left-toright or right-to-left when functions have the same precedence.
+
+(Table operators precedence and associativity in JS) [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence]
+
+```javascript
+  var a = 3 + 4 * 5;    // = 23
+```
+Order of exeqution: ```*``` --> ```+``` --> ```=```
+
+```javascript
+  var a = 2, b = 3, c = 4;
+
+  a = b = c;    // associativity of '=' right-to-left
+
+  console.log(a); // 4
+  console.log(b); // 4
+  console.log(c); // 4
+```
+```javascript
+  var a = (3 + 4) * 5;    // = 35 because grouping goes first
+```
