@@ -91,3 +91,94 @@ Order of exeqution: ```*``` --> ```+``` --> ```=```
 ```javascript
   var a = (3 + 4) * 5;    // = 35 because grouping goes first
 ```
+
+## COERCION
+
+**Coercion**: converting a value from one type to another. This happens quite often in JS because it's dynamicaly typed.
+
+```javascrit
+var a = 1 + '2'; // => '12'
+```
+First parameter 1 was coerced by the JS engine in to a string.
+
+### Some examples
+
+```javascript
+  Number(true) // =>  1
+  Number(false) // =>  0
+  Number(undefined) // =>  NaN (not a number)
+  Number('3') // => 3
+  Number(null) // => 0
+```
+
+
+## Comparison operators
+
+```<``` - has the left-to-right assotiativity
+
+```javascript
+console.log(1 < 2 < 3); // => true
+```
+Because ```1 < 2  => true```. ```true``` coercing to ```1```
+```javascript
+  Number(true) // =>  1
+```
+and comparing with ```3```. ```1 < 3 => true```.
+
+```javascript
+console.log(3 < 2 < 1); // => true ( )
+```
+
+Because ```3 < 2  => false```. ```false``` coercing to ```0```
+```javascript
+  Number(false) // =>  0
+```
+and comparing with ```3```. ```0 < 1 // => true```.
+
+### Equality operator ```==```
+
+```javascript
+  3 == 3 // => true
+  "3" == 3  // => true , because of coercion
+  false == 0 // true
+
+  var a = false;
+  a == 0;  // => true
+
+  null == 0;  // => false
+
+  null < 1;  // => true
+
+  "" == 0; // => true
+
+  "" == false // => true
+```
+This is actually considered a negative part of the language in comparison operators, especially double equals causes strange errors because of unexpected ways in which it behaves.
+
+Double equals using an empty string and zero, that's true.
+
+This problems solves with ```===``` (strict equality) and save your life ))
+**Strict equality** compares two things, but doesn't try to coerce the values.
+If the two values are not the same type, it just return ```false```.
+
+```javascript
+  3 === 3 // => true
+  '3' === '3' // => true
+  '3' === 3   // => false
+```
+
+Using the triple equals will prevent us from having some odd potential errors in our code.
+
+In general, try to do comparison against things in your code that you know will be the same type.
+
+**Use ```===/!==``` in 99% of the time when making equality comparisons.**
+
+**Don't use ```==/!=``` unless you explicitly, unless you consciously want to coerce the two values.**
+
+(Equality Comparisons Table) [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness]
+
+
+## Object.is()
+
+The ```Object.is()``` method determines whether two values are the same value.
+(link) [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is]
