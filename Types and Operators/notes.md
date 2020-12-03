@@ -182,3 +182,85 @@ In general, try to do comparison against things in your code that you know will 
 
 The ```Object.is()``` method determines whether two values are the same value.
 (link) [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is]
+
+
+## Existence and Booleans
+
+```javascript
+  Boolean(undefined) // => false
+  Boolean(null)   // => false
+  Boolean("")     // => false
+  Boolean(0)     // => false
+```
+
+```javascript
+  var a;
+
+  // some code when we set value to the a or not set
+
+  if (a) {  // just checking some value is set
+    console.log('Something is there.');
+  }
+
+```
+
+## Default values
+
+```javascript
+  function greet(name) {
+    console.log('Hello ' + name);
+  }
+  greet();  // => Hello undefined
+```
+Good practice - use default value.
+
+```javascript
+  function greet(name = '<You name here>') {  // in ES6
+    name = name || '<You name here>';   // before ES6
+    console.log('Hello ' + name);
+  }
+  greet();  // => Hello <You name here>
+```
+
+### || / or operator
+
+```javascript
+  false || true     // => true
+  undefined || 'hello'    // => 'hello'
+  0 || 1    // => 1
+```
+```||``` operator returns first value which can coerse to ```true```
+
+
+## Framework aside: Default values
+
+```html
+  <html>
+    <head> </head>
+    <body>
+        <script src="lib1.js"></script>
+        <script src="lib2.js"></script>
+        <script src="app.js"></script>
+    </body>
+  </html>
+```
+```javascript
+  // lib1
+  var libraryName = 'Lib1'
+```
+```javascript
+  // lib2
+  var libraryName = 'Lib2'
+```
+```javascript
+  // app
+  console.log(libraryName);   // => Lib2
+```
+These three script tags are not creating new execution context. They're not separating the code in any way. Quite literally, they're stacking the code on top of each other. And then running all of this JS as if it was inside a single file.
+
+Best to do:
+```javascript
+  // lib2
+  window.libraryName = window.libraryName || 'Lib2';
+  console.log(window.libraryName) // => Lib1
+```
