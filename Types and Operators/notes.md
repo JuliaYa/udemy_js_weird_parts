@@ -17,9 +17,9 @@ This turns out to be quite powerful, and can also cause you some problems if you
 
 ## Primitive types
 
-Primitive type: a type of data that represents a single value. That is not an object.
+**Primitive type**: a type of data that represents a single value. That is not an object.
 
-There are six types in JavaScript.
+### There are six types in JavaScript.
 
 ***Undefined*** - represents lack of existence. JS engine sets variables to initially and it will stay undefined unless you set the variable to have a value.
 
@@ -30,6 +30,7 @@ There are six types in JavaScript.
 **You CAN set a variable to this** in cases when you whant to say that something doesn't exist (equal to nothing).
 
 **Boolean**
+
 ```true``` or ```false```
 
 **Number**
@@ -52,7 +53,7 @@ There are six types in JavaScript.
   a === otherA // false
 ```
 
-(Link to article) [https://latteandcode.medium.com/javascript-do-you-know-the-symbol-type-9dfbf40b6eef]
+[Link to article](https://latteandcode.medium.com/javascript-do-you-know-the-symbol-type-9dfbf40b6eef)
 
 ## Operators
 
@@ -72,7 +73,7 @@ There are six types in JavaScript.
 
 **Associativity**: what order operator functions get called in: left-toright or right-to-left when functions have the same precedence.
 
-(Table operators precedence and associativity in JS) [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence]
+[Table operators precedence and associativity in JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
 
 ```javascript
   var a = 3 + 4 * 5;    // = 23
@@ -99,7 +100,7 @@ Order of exeqution: ```*``` --> ```+``` --> ```=```
 ```javascrit
 var a = 1 + '2'; // => '12'
 ```
-First parameter 1 was coerced by the JS engine in to a string.
+First parameter ```1``` was coerced by the JS engine in to a string.
 
 ### Some examples
 
@@ -175,13 +176,13 @@ In general, try to do comparison against things in your code that you know will 
 
 **Don't use ```==/!=``` unless you explicitly, unless you consciously want to coerce the two values.**
 
-(Equality Comparisons Table) [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness]
+[Equality Comparisons Table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
 
 
 ## Object.is()
 
 The ```Object.is()``` method determines whether two values are the same value.
-(link) [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is]
+[link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)
 
 
 ## Existence and Booleans
@@ -258,7 +259,7 @@ Good practice - use default value.
 ```
 These three script tags are not creating new execution context. They're not separating the code in any way. Quite literally, they're stacking the code on top of each other. And then running all of this JS as if it was inside a single file.
 
-Best to do:
+### Best to do:
 ```javascript
   // lib2
   window.libraryName = window.libraryName || 'Lib2';
