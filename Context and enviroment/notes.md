@@ -6,14 +6,14 @@
 | ----------| -------------------- |
 | ` function Hello() {     var str = 'Str'; } `; | translation + other stuff |
 
-**Lexical environment**: where something sits phisically in the code you write
+**Lexical environment**: where something sits physically in the code you write
 
- In most popular PL the lexical environment is important, that means that where you see things written gives you an idea of where it will actually sit in the computer's memory. And how it will interact with other variables, functions and elemtnts of a program. Thats because compiler cares about where you put things.
+ In most popular PL the lexical environment is important, that means that where you see things written gives you an idea of where it will actually sit in the computer's memory. And how it will interact with other variables, functions and elements of a program. Thats because compiler cares about where you put things.
  **When we talk about LE of something in the code we're talking about where it's written and what surrounds it.**
  
  **Execution context**: a wrapper to help manage the code that is running
 
- There are lots of LE. Which one is running is managed via EC. It can contain things beyond what you've written in your code. Becase our code can be processed a whole other set of programs that someone else wrote.
+ There are lots of LE. Which one is running is managed via EC. It can contain things beyond what you've written in your code. Because our code can be processed a whole other set of programs that someone else wrote.
 
  ## Conceptual Aside: Name/Value Pairs and Objects
 
@@ -68,11 +68,11 @@ console.log(a); // Hello World!
 
 This means is that before your code begins to be executed line by line the JS engine has already set aside memory space for the variables and functions that you've created in that entire code. So when the code begins to execute line by line, it can access them.
 
-Functions will place to memory as entire block but for variables memory will be reserved without saving it's value. If we use variable before assignment it's value will be ```undefined```. And we get error if use variable without declaration. 
+Functions will place to memory as entire block but for variables memory will be reserved without saving it's value. If we use variable before assignment it's value will be `undefined`. And we get error if use variable without declaration. 
 
 ### Execution phase
 
-A moment where it actually executes your code line by line, that's when these kind of assigments are set, where variables equals something.
+A moment where it actually executes your code line by line, that's when these kind of assignments are set, where variables equals something.
 All variables in JS are initially set to undefined, and functions are sitting in memory in their entirety.
 That's why it's a bad idea to rely on hoisting in any way.
 Just use variables and functions after declaration.
@@ -87,7 +87,7 @@ The fact is that what I wrote is not what's directly being executed but the JS e
 
 ```javascript
 var a;
-console.log(a);     // undefned
+console.log(a);     // undefined
 
 if(a === undefined) {
   console.log('a is undefined!'); // a is undefined!
@@ -110,7 +110,7 @@ if(a === undefined) {
 ```
 ### Never do that!
 ```javascript
-a = udefined;
+a = undefined;
 ```
 It can be hard with debugging later.
 
@@ -133,7 +133,7 @@ function b() {
 }
 b(); // Called b!
 
-console.log(a); // underfined
+console.log(a); // undefined
 var a = 'Hello World!';
 console.log(a); // Hello World!
 
@@ -173,7 +173,7 @@ Global Execution Context
 
 Every time when function was called a new execution context is created for that function. The variables within it are set up during the creation phase.
 
-## Functions, context and variable enviroments
+## Functions, context and variable environments
 
 **Variable environment**: where the variables live and how they relate to each other in memory.
 
@@ -229,11 +229,11 @@ a();
 
 **Scope**: where a variable is available in your code and if it's truly the same variable, or a new copy
 
-ES6 or ECMAScript 2015 is introdusing a new way of declaring variables.
+ES6 or ECMAScript 2015 is introducing a new way of declaring variables.
 
 **"let"** allows the JS engine to use block scoping.
 
-During the creation phase it still plased in memory and set to undefined, however you not allowed to use it until the line of code is run during the execution phase that actually declares the variable.
+During the creation phase it still pled in memory and set to undefined, however you not allowed to use it until the line of code is run during the execution phase that actually declares the variable.
 
 ```javascript
 if (a > b) {
@@ -244,18 +244,18 @@ if (a > b) {
 
 ### First
 
-If you tried to use ***c*** in this example before the ```let c = true```, you'd get an error "Cannot access 'c before initialization". It's still in memory but the engine just won't allow it.
+If you tried to use ***c*** in this example before the `let c = true`, you'd get an error "Cannot access 'c before initialization". It's still in memory but the engine just won't allow it.
 
 ### Second
 
-Then let variable declared inside the block ```{...}```, it's only avalable inside that block at that period of time for the running code.
+Then let variable declared inside the block `{...}`, it's only available inside that block at that period of time for the running code.
 
 If you have a loop and are running the same code over and over but you have a let statement, you'll actually get a different variable in memory each time the loop is running.
 
 
 ## What About Asynchronous Callbacks?
 
-**Asyncronous**: more then one at a time
+**Asynchronous**: more then one at a time
 
 JS doesn't execute asynchronously. It executes code a line at a time.
 
@@ -272,13 +272,13 @@ How JS handle asynchronous click events, callback functions and so on?
 
  **Event Queue**: full of events, notifications of events, that might be happening.
 
-When the browser, somewere outside the JS engine, has an event that inside the JS engine we want to be notified of, it gets placed on the queue. And whether or not we actually have a function that needs to respond to it, we can listen for that event and have that function handle that event, but either way the event gets placed on the queue.
+When the browser, somewhere outside the JS engine, has an event that inside the JS engine we want to be notified of, it gets placed on the queue. And whether or not we actually have a function that needs to respond to it, we can listen for that event and have that function handle that event, but either way the event gets placed on the queue.
 
-When execution stack is empty JS periodically looks to event queue. And if something is there, it looks to see if a perticular function shood be run when that event was triggered.
-So it sees a click event, it processes that click event and knows there's a function (```clickHandler()```) that needs to be run for that event. JS create the execution context for that function, processed event and next item in the queue moves up, and so on.
+When execution stack is empty JS periodically looks to event queue. And if something is there, it looks to see if a particular function should be run when that event was triggered.
+So it sees a click event, it processes that click event and knows there's a function (`clickHandler()`) that needs to be run for that event. JS create the execution context for that function, processed event and next item in the queue moves up, and so on.
 **The event queue won't be processed until the execution stack is empty, until JS is finished running all of that other code line by line.**
 So it isn't really asynchronous!
-What's happening is the browser asynchronously is putting things into the event queue, but the code that is running is still runnning line by line. And when the execution contexts are all gone, then it processes the events.
+What's happening is the browser asynchronously is putting things into the event queue, but the code that is running is still running line by line. And when the execution contexts are all gone, then it processes the events.
 
 ```javascript
 // long running function
@@ -313,8 +313,8 @@ finished function
 finished execution
 click event!
 ```
-```click event!``` will be still last again. 
+`click event!` will be still last again. 
 
-Any events that happen outside of the engine get placed into that queue, and if the execution stack is empty, if JS isn't working on anything else curently, it'll process those events. It'll process the events in the order they happend.
+Any events that happen outside of the engine get placed into that queue, and if the execution stack is empty, if JS isn't working on anything else currently, it'll process those events. It'll process the events in the order they happened.
 
 Asynchronous callbacks are possible in JS, but asynchronous part is really about what's happening outside the JS engine via this event loop and list of events.

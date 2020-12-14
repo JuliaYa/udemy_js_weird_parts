@@ -7,9 +7,9 @@ bool myVar = 'hello' // an error
 ```
 
 ```javascript
-  let myVar = true; // no errors
-  myVar = 'Hey!';
-  myVar = 5;
+let myVar = true; // no errors
+myVar = 'Hey!';
+myVar = 5;
 ```
 
 This turns out to be quite powerful, and can also cause you some problems if you don't understand how JS is going to make decisions as a result of dynamic typing.
@@ -27,15 +27,15 @@ This turns out to be quite powerful, and can also cause you some problems if you
 
 ***NULL*** represents lack of existence
 
-**You CAN set a variable to this** in cases when you whant to say that something doesn't exist (equal to nothing).
+**You CAN set a variable to this** in cases when you want to say that something doesn't exist (equal to nothing).
 
 **Boolean**
 
-```true``` or ```false```
+`true` or `false`
 
 **Number**
 
-*Floating point* number (there's always some desimals). There is only one 'number' type and it can make math weird.
+*Floating point* number (there's always some decimals). There is only one 'number' type and it can make math weird.
 
 **String** - a sequence of characters ('' and "" can be used). Double quotes can be used to specify that we're dealing with a string.
 
@@ -44,13 +44,13 @@ This turns out to be quite powerful, and can also cause you some problems if you
 *"The Symbol type allows us to obtain values that cannot be re-created, that is, they are unique and immutable identifiers."*
 
 ```javascript
-  Symbol() === Symbol() // false
+Symbol() === Symbol() // false
 ```
 
 ```javascript
-  const a = Symbol('a');
-  const otherA = Symbol('a');
-  a === otherA // false
+const a = Symbol('a');
+const otherA = Symbol('a');
+a === otherA // false
 ```
 
 [Link to article](https://latteandcode.medium.com/javascript-do-you-know-the-symbol-type-9dfbf40b6eef)
@@ -62,206 +62,207 @@ This turns out to be quite powerful, and can also cause you some problems if you
 **Infix notation** means that the function name, the operator, sits between the two parameters.
 
 ```javascript
-  3 + 5 // infix
-  +3    // prefix
-  3+    // postfix
+3 + 5 // infix
++3    // prefix
+3+    // postfix
 ```
 
 ## Operator Precedence and Associativity
 
-**Operator Precedence**: which operator function gets called first. Finctions are called in order of precedence. The higher precedence wins.
+**Operator Precedence**: which operator function gets called first. Functions are called in order of precedence. The higher precedence wins.
 
-**Associativity**: what order operator functions get called in: left-toright or right-to-left when functions have the same precedence.
+**Associativity**: what order operator functions get called in: left-to-right or right-to-left when functions have the same precedence.
 
 [Table operators precedence and associativity in JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
 
 ```javascript
-  var a = 3 + 4 * 5;    // = 23
+var a = 3 + 4 * 5;    // = 23
 ```
-Order of exeqution: ```*``` --> ```+``` --> ```=```
+Order of execution: `*` --> `+` --> `=`
 
 ```javascript
-  var a = 2, b = 3, c = 4;
+var a = 2, b = 3, c = 4;
 
-  a = b = c;    // associativity of '=' right-to-left
+a = b = c;    // associativity of '=' right-to-left
 
-  console.log(a); // 4
-  console.log(b); // 4
-  console.log(c); // 4
+console.log(a); // 4
+console.log(b); // 4
+console.log(c); // 4
 ```
 ```javascript
-  var a = (3 + 4) * 5;    // = 35 because grouping goes first
+var a = (3 + 4) * 5;    // = 35 because grouping goes first
 ```
 
 ## COERCION
 
-**Coercion**: converting a value from one type to another. This happens quite often in JS because it's dynamicaly typed.
+**Coercion**: converting a value from one type to another. This happens quite often in JS because it's dynamically typed.
 
-```javascrit
+```javascript
 var a = 1 + '2'; // => '12'
 ```
-First parameter ```1``` was coerced by the JS engine in to a string.
+First parameter `1` was coerced by the JS engine in to a string.
 
 ### Some examples
 
 ```javascript
-  Number(true) // =>  1
-  Number(false) // =>  0
-  Number(undefined) // =>  NaN (not a number)
-  Number('3') // => 3
-  Number(null) // => 0
+Number(true) // =>  1
+Number(false) // =>  0
+Number(undefined) // =>  NaN (not a number)
+Number('3') // => 3
+Number(null) // => 0
 ```
 
 
 ## Comparison operators
 
-```<``` - has the left-to-right assotiativity
+`<` - has the left-to-right associativity
 
 ```javascript
 console.log(1 < 2 < 3); // => true
 ```
-Because ```1 < 2  => true```. ```true``` coercing to ```1```
+Because `1 < 2  => true`. `true` coercing to `1`
 ```javascript
-  Number(true) // =>  1
+Number(true) // =>  1
 ```
-and comparing with ```3```. ```1 < 3 => true```.
+and comparing with `3`. `1 < 3 => true`.
 
 ```javascript
 console.log(3 < 2 < 1); // => true ( )
 ```
 
-Because ```3 < 2  => false```. ```false``` coercing to ```0```
+Because `3 < 2  => false`. `false` coercing to `0`
 ```javascript
-  Number(false) // =>  0
+Number(false) // =>  0
 ```
-and comparing with ```3```. ```0 < 1 // => true```.
+and comparing with `3`. `0 < 1 // => true`.
 
-### Equality operator ```==```
+### Equality operator `==`
 
 ```javascript
-  3 == 3 // => true
-  "3" == 3  // => true , because of coercion
-  false == 0 // true
+3 == 3 // => true
+"3" == 3  // => true , because of coercion
+false == 0 // true
 
-  var a = false;
-  a == 0;  // => true
+var a = false;
+a == 0;  // => true
 
-  null == 0;  // => false
+null == 0;  // => false
 
-  null < 1;  // => true
+null < 1;  // => true
 
-  "" == 0; // => true
+"" == 0; // => true
 
-  "" == false // => true
+"" == false // => true
 ```
+
 This is actually considered a negative part of the language in comparison operators, especially double equals causes strange errors because of unexpected ways in which it behaves.
 
-Double equals using an empty string and zero, that's true.
+This problems solves with `===` (strict equality) and save your life ))
 
-This problems solves with ```===``` (strict equality) and save your life ))
-**Strict equality** compares two things, but doesn't try to coerce the values.
-If the two values are not the same type, it just return ```false```.
+**Strict equality** compares two things but doesn't try to coerce the values.
+If the two values are not the same type, it just returns `false`.
 
 ```javascript
-  3 === 3 // => true
-  '3' === '3' // => true
-  '3' === 3   // => false
+3 === 3 // => true
+'3' === '3' // => true
+'3' === 3   // => false
 ```
 
-Using the triple equals will prevent us from having some odd potential errors in our code.
+Using the triple equals will save us from having some odd potential errors in our code.
 
 In general, try to do comparison against things in your code that you know will be the same type.
 
-**Use ```===/!==``` in 99% of the time when making equality comparisons.**
+**Use `===/!==` in 99% of the time when making equality comparisons.**
 
-**Don't use ```==/!=``` unless you explicitly, unless you consciously want to coerce the two values.**
+**Don't use `==/!=` unless you explicitly, unless you consciously want to coerce the two values.**
 
 [Equality Comparisons Table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness)
 
 
 ## Object.is()
 
-The ```Object.is()``` method determines whether two values are the same value.
+The `Object.is()` method determines whether two values are the same value.
 [link](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)
 
 
 ## Existence and Booleans
 
 ```javascript
-  Boolean(undefined) // => false
-  Boolean(null)   // => false
-  Boolean("")     // => false
-  Boolean(0)     // => false
+Boolean(undefined) // => false
+Boolean(null)   // => false
+Boolean("")     // => false
+Boolean(0)     // => false
 ```
 
 ```javascript
-  var a;
+var a;
 
-  // some code when we set value to the a or not set
+// some code when we set value to the a or not set
 
-  if (a) {  // just checking some value is set
-    console.log('Something is there.');
-  }
-
+if (a) {  // just checking some value is set
+  console.log('Something is there.');
+}
 ```
 
 ## Default values
 
 ```javascript
-  function greet(name) {
-    console.log('Hello ' + name);
-  }
-  greet();  // => Hello undefined
+function greet(name) {
+  console.log('Hello ' + name);
+}
+greet();  // => Hello undefined
 ```
+
 Good practice - use default value.
 
 ```javascript
-  function greet(name = '<You name here>') {  // in ES6
-    name = name || '<You name here>';   // before ES6
-    console.log('Hello ' + name);
-  }
-  greet();  // => Hello <You name here>
+function greet(name = '<You name here>') {  // in ES6
+  name = name || '<You name here>';   // before ES6
+  console.log('Hello ' + name);
+}
+greet();  // => Hello <You name here>
 ```
 
 ### || / or operator
 
 ```javascript
-  false || true     // => true
-  undefined || 'hello'    // => 'hello'
-  0 || 1    // => 1
+false || true     // => true
+undefined || 'hello'    // => 'hello'
+0 || 1    // => 1
 ```
-```||``` operator returns first value which can coerse to ```true```
+`||` operator returns first value which can coerce to `true`
 
 
 ## Framework aside: Default values
 
 ```html
-  <html>
-    <head> </head>
-    <body>
-        <script src="lib1.js"></script>
-        <script src="lib2.js"></script>
-        <script src="app.js"></script>
-    </body>
-  </html>
+<html>
+  <head> </head>
+  <body>
+      <script src="lib1.js"></script>
+      <script src="lib2.js"></script>
+      <script src="app.js"></script>
+  </body>
+</html>
 ```
 ```javascript
-  // lib1
-  var libraryName = 'Lib1'
+// lib1
+var libraryName = 'Lib1'
 ```
 ```javascript
-  // lib2
-  var libraryName = 'Lib2'
+// lib2
+var libraryName = 'Lib2'
 ```
 ```javascript
-  // app
-  console.log(libraryName);   // => Lib2
+// app
+console.log(libraryName);   // => Lib2
 ```
+
 These three script tags are not creating new execution context. They're not separating the code in any way. Quite literally, they're stacking the code on top of each other. And then running all of this JS as if it was inside a single file.
 
 ### Best to do:
 ```javascript
-  // lib2
-  window.libraryName = window.libraryName || 'Lib2';
-  console.log(window.libraryName) // => Lib1
+// lib2
+window.libraryName = window.libraryName || 'Lib2';
+console.log(window.libraryName) // => Lib1
 ```
