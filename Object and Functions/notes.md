@@ -75,3 +75,30 @@ Tony.address2 = {
 ```
 **Object literals syntax turns out to be really powerful. It can make some very clean looking, readable and easy to write code.**
 
+## Faking namespaces
+
+**Namespace** - container for variables and functions. Typically to keep variables and functions with the same name separate
+
+JS doesn't have namespaces. But we don't need it, we can fake it.
+
+```javascript
+var greet = 'Hello!';
+var greet = 'Hola!';
+
+console.log(greet); // => Hola!
+```
+
+To avoid this behavior we can use objects as containers.
+
+```javascript
+  var english = {};
+  var spanish = {};
+
+  english.greet = 'Hello!';
+  spanish.greet = 'Hola!';
+
+  console.log(english); // => Object {greet: 'Hello!'}
+```
+
+And we can keep having levels of different containing objects.
+
