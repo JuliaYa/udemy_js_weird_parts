@@ -102,3 +102,43 @@ To avoid this behavior we can use objects as containers.
 
 And we can keep having levels of different containing objects.
 
+## JSON and Object Literals
+
+**JSON** - JavaScript Object Notation
+It's inspired by object literal syntax in JS.
+
+Common mistake is to think that they're the exact same thing and run across some errors.
+
+```javascript
+var objectLiteral = {
+  firstname: 'Julia',
+  isAProgrammer: true
+}
+```
+
+Before JSON data was sent like this (xml format):
+
+```xml
+<object>
+  <firstname>Julia</firstname>
+  <isAProgrammer>true</isAProgrammer>
+</object>
+```
+But for big arrays of data it was too much unnecessary characters that make the amount of data larger. Download time matters.
+
+String like this much faster, only difference is quoted property names:
+
+```json
+{
+  "firstname": "Julia",
+  "isAProgrammer": true
+}
+```
+
+So JSON is technically a subset of the object literal syntax. Valid JSON is valid JS object literal syntax.
+
+For all objects we can do: 
+```javascript
+JSON.stringify(objectLiteral); // convert object to JSON
+JSON.parse(JSONString); // convert JSON string to object
+```
