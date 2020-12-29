@@ -142,3 +142,21 @@ For all objects we can do:
 JSON.stringify(objectLiteral); // convert object to JSON
 JSON.parse(JSONString); // convert JSON string to object
 ```
+
+## Function are Objects
+
+**First class functions** - everything you can do with other types, you can do with functions. Assign them to variables, pass them around, create them on the fly.
+
+Function a special type of object and we can attach properties and methods to it.
+
+In JS the function object has some hidden special properties:
+
+* **NAME** optional (can be anonymous)
+* **CODE** (code what you write inside) - invocable ()
+
+```javascript
+function greet(){
+  console.log('hi');  // placed to CODE property
+}
+greet.language = 'english'; // just custom property
+```
