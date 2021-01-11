@@ -186,3 +186,48 @@ anonymousGreet();
 
 But in this case we can't invoke function before initialisation.
 
+
+## By Value vs By Reference
+
+**by value**
+
+```javascript
+var a = 5; // primitive value (one spot in memory)
+
+var b = a; // copy of primitive value (another spot in memory)
+
+a = 2;
+console.log(a);   // 2
+console.log(b);   // 5 
+```
+
+**by reference** for objects (including functions)
+
+```javascript
+var myObject = {name: 'Julia', book: 'Harry Potter'};
+var copyOfMyObject = myObject;
+var otherCopy = myObject;
+
+copyOfMyObject.name = 'Judy';     // mutate
+console.log(myObject.name);  // => Judy
+console.log(copyOfMyObject.name); // => Judy
+console.log(otherCopy.name); // => Judy
+
+function changeObjName(obj) {
+  obj.name = 'Hanna';
+}
+
+otherCopy = { name: 'Kate' };   // creating other object
+changeObjName(myObject);
+console.log(myObject.name);  // => Hanna
+console.log(copyOfMyObject.name); // => Hanna
+console.log(otherCopy.name); // =>  Kate
+```
+Variables `myObject` and `copyOfMyObject` points to the same place in memory.
+
+**Mutate**: to change something.
+**Immutable** means it can't be changed.
+
+The same thing happens for functions.
+
+ ### All objects interact **by reference**.
