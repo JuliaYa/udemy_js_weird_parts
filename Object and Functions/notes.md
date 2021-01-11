@@ -160,3 +160,29 @@ function greet(){
 }
 greet.language = 'english'; // just custom property
 ```
+
+## Function statements and function expressions
+
+**Expression**: a unit of code that results in a value. It doesn't have to save to a variable (`2 + 3`).
+
+**Statement** doesn't return value:
+
+```javascript
+if (a === 3) {
+  ...
+}
+function greet() {
+  console.log('hi);
+}
+```
+
+***Function expression:***
+```javascript
+var anonymousGreet = function() {
+  console.log('hi);
+}
+anonymousGreet();
+```
+
+But in this case we can't invoke function before initialisation.
+
