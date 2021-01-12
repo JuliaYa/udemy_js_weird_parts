@@ -258,7 +258,7 @@ var c = {
      // this.name = newName;    // point to Global object Window
       self.name = newName;
     };
-    setName('Updateed again!');
+    setName('Updated again!');
     console.log(self);    // object c without changes
   }
 }
@@ -269,3 +269,54 @@ console.log(newVariable)  // Hello
 c.log();    // => Object c
 ```
 we can change object properties from methods inside the object.
+
+## `arguments` and spread
+
+**Arguments**: the parameters you pass to a function.
+JS gives you a keyword of the same name which contains them all.
+
+```javascript
+function greet(firstname, lastname, language) {
+  console.log(firstname);
+  console.log(lastname);
+  console.log(language);
+};
+greet();  // undefined undefined undefined
+greet('John', 'Doe') // John Doe undefined
+```
+
+In JS we can call function with any number of parameters.
+
+To check it inside the function we can do:
+```javascript
+function greet(firstname, lastname, language) {
+ 
+  language = language || 'en';
+  
+  if (arguments.length === 0) {
+      console.log('Missing parameters!');
+      console.log('-------------');
+      return;
+  }
+  
+  console.log(firstname);
+  console.log(lastname);
+  console.log(language);
+  console.log(arguments);
+  console.log('arg 0: ' + arguments[0]);
+  console.log('-------------'); 
+}
+```
+### Spread operator
+
+```javascript
+function greet(firstname, lastname, language, ...other) {
+  console.log(firstname);
+  console.log(lastname);
+  console.log(language);
+};
+```
+`other` - extra parameters that aren't defined explicitly wrapped into array.
+This approach doesn't available in all browsers yet.
+
+## 
