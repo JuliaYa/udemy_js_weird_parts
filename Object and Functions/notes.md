@@ -231,3 +231,41 @@ Variables `myObject` and `copyOfMyObject` points to the same place in memory.
 The same thing happens for functions.
 
  ### All objects interact **by reference**.
+
+## Objects, functions and 'this'
+
+`this` can be pointing at a different thing depending on how the function invoked. There are few scenarios where `this` will be changed depending on how the function called.
+
+```javascript
+function a() {
+  console.log(this);
+}
+
+var b = function () {
+  console.log(this);
+  this.newVariable = 'Hello';
+}
+
+var c = {
+  name: 'The c object',
+  log: function() {
+    var self = this;  //  common practice to save this inside object method
+    self.name = 'Updated name';
+    //this.name = 'Updated name';
+    console.log(this);
+
+    var setName = function(newName) {
+     // this.name = newName;    // point to Global object Window
+      self.name = newName;
+    };
+    setName('Updateed again!');
+    console.log(self);    // object c without changes
+  }
+}
+
+a();  // => Window
+b();  // => Window
+console.log(newVariable)  // Hello
+c.log();    // => Object c
+```
+we can change object properties from methods inside the object.
