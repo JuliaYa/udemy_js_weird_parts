@@ -352,3 +352,46 @@ greetSpanish('John', 'Doe');
 
 Reads your code and determines if it's valid and what it is trying to do. It's going through your code character by character, making assumptions, stating certain rules, and can even make changes to your code before it's executed. And it's really important to remember it.
 
+
+## Automatic Semicolon Insertion
+Semicolon is optional because JS Engine putting them where it thinks they should be, if they're missing. This can cause a big problem in your code.
+
+Rules:
+1. Always put your own semicolons.
+
+```javascript
+function getPerson() {
+  return        // parser put semicolon after return
+  {
+    firstname: 'Tony'
+  }
+}
+console.log(getPerson());   // => undefined
+```
+
+## Whitespace
+Invisible characters that create literal 'space' in your written code. Carriage returns, tabs, spaces.
+
+```javascript
+var 
+  // first name of the person
+  firstname,
+
+  // last name of the person
+  lastname,
+
+  // the language
+  // can be 'en' or 'es'
+  language;
+
+var person = {
+  // some note
+  firstname: 'Julia',
+  // another note
+  lastname: 'Ya'
+};
+
+console.log(person);    // => { Object }
+```
+We can put whitespace, returns and tabs almost everywhere.
+***You should do this to make your code more readable for yourself and other developers.***
