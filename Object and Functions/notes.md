@@ -311,12 +311,44 @@ function greet(firstname, lastname, language) {
 
 ```javascript
 function greet(firstname, lastname, language, ...other) {
-  console.log(firstname);
-  console.log(lastname);
-  console.log(language);
+  console.log(other);
 };
+greet('John', 'Doe', 'es', 'Marta', 'en') // => ['Marta', 'en']
 ```
 `other` - extra parameters that aren't defined explicitly wrapped into array.
 This approach doesn't available in all browsers yet.
 
-## 
+## Function overloading
+
+In JS we doesn't have possibility to overload functions, but we can do it in a few other ways:
+
+The simple one:
+```javascript
+function greet(firstname, lastname, language) {    
+  language = language || 'en';
+  
+  if (language === 'en') {
+      console.log('Hello ' + firstname + ' ' + lastname);   
+  }
+  
+  if (language === 'es') {
+      console.log('Hola ' + firstname + ' ' + lastname);   
+  }
+}
+
+function greetEnglish(firstname, lastname) {
+    greet(firstname, lastname, 'en');   
+}
+
+function greetSpanish(firstname, lastname) {
+    greet(firstname, lastname, 'es');   
+}
+
+greetEnglish('John', 'Doe');
+greetSpanish('John', 'Doe');
+```
+
+## Syntax Parsers
+
+Reads your code and determines if it's valid and what it is trying to do. It's going through your code character by character, making assumptions, stating certain rules, and can even make changes to your code before it's executed. And it's really important to remember it.
+
