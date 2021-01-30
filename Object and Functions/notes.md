@@ -395,3 +395,51 @@ console.log(person);    // => { Object }
 ```
 We can put whitespace, returns and tabs almost everywhere.
 ***You should do this to make your code more readable for yourself and other developers.***
+
+## Immediately Invoked Functions Expressions (IIFEs)
+
+```javascript
+// function statement
+function greet(name) {
+    console.log('Hello ' + name);   
+}
+greet('John');
+
+// using a function expression
+var greetFunc = function(name) {
+    console.log('Hello ' + name);
+};
+greetFunc('John');
+
+// using an Immediately Invoked Function Expression (IIFE)
+var greeting = function(name) {
+    
+    return 'Hello ' + name;
+    
+}('John');
+
+console.log(greeting);
+
+// IIFE
+var firstname = 'John';
+
+(function(name) {
+    
+    var greeting = 'Inside IIFE: Hello';
+    console.log(greeting + ' ' + name);
+    
+}(firstname)); // IIFE
+
+```
+We only use `()` as a grouping operator and when we use it to wrap anonymous function. In that case engine will think we just creating function object on the fly. Without it we'll get an error.
+
+```javascript
+// it's all valid and placed to a memory but kinda lost
+3;
+"I'm a string";
+
+// we can use this trick
+(function(name) {
+  console.log('Hello ' + name);  
+}(name);)
+```
