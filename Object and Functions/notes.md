@@ -443,3 +443,15 @@ We only use `()` as a grouping operator and when we use it to wrap anonymous fun
   console.log('Hello ' + name);  
 }(name);)
 ```
+
+## IIFEs and Safe code
+
+```javascript
+(function(name) {
+    
+    var greeting = 'Hello';    // not in global object
+    console.log(greeting + ' ' + name);
+    
+}(firstname));
+```
+For this function engine creating new Execution Context, this code will be separate from other code
