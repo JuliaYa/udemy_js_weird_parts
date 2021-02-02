@@ -536,3 +536,29 @@ fs2[0]();   // => 0
 fs2[1]();   // => 1
 fs2[2]();   // => 2
 ```
+
+## Function Factories
+
+```javascript
+function makeGreeting(language) { // function factory
+ 
+  return function(firstname, lastname) {    
+    if (language === 'en') {
+        console.log('Hello ' + firstname + ' ' + lastname);   
+    }
+    if (language === 'es') {
+        console.log('Hola ' + firstname + ' ' + lastname);   
+    }   
+  }
+}
+
+// makeGreetings calls two times with different EC
+
+var greetEnglish = makeGreeting('en');  // closure with language = 'en'
+var greetSpanish = makeGreeting('es');  // closure with language = 'es'
+
+greetEnglish('John', 'Doe');  // => Hello John Doe
+greetEnglish('Jane', 'Doe'); // => Hello Jane Doe
+greetSpanish('John', 'Doe');  // => Hola John Doe
+```
+**Every time when call a function we get new EC with own variable environment**
