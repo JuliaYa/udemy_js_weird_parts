@@ -455,3 +455,84 @@ We only use `()` as a grouping operator and when we use it to wrap anonymous fun
 }(firstname));
 ```
 For this function engine creating new Execution Context, this code will be separate from other code
+
+
+## Understanding closures
+
+```javascript
+function greet(whattosay) {
+
+   return function(name) {
+       console.log(whattosay + ' ' + name);
+   }
+
+}
+
+var sayHi = greet('Hi'); 
+sayHi('Tony');
+```
+
+JS engine creates EC for `greet` function and return other function, than remove EC but saves variables in memory for a while. Than engine creates EC for `sayHi` function and run it. Variable `whattosay` still have link to memory with saved value. And all run good.
+
+But here is an example that shows how easily your can make mistakes without understanding closures.
+
+```javascript
+function buildFunctions() {
+ 
+    var arr = [];
+    
+    for (var i = 0; i < 3; i++) {
+        
+        arr.push(
+            function() {
+                console.log(i);   
+            }
+        )
+        
+    }
+    
+    return arr;
+}
+
+var fs = buildFunctions();
+
+fs[0]();  // => 3
+fs[1]();  // => 3
+fs[2]();  // => 3
+
+// this is because memory keeps value i = 3 (last cycle run)
+
+// we can avoid it like this
+function buildFunctions2() {
+ 
+    var arr = [];
+    // es5 approach
+    for (var i = 0; i < 3; i++) {
+        arr.push(
+            (function(j) {
+                return function() {
+                    console.log(j);   
+                }
+            }(i))
+        )
+    }
+
+    // es6 approach
+    for (var i = 0; i < 3; i++) {
+        let j = i;
+        arr.push(
+          function() {
+              console.log(j);   
+          }
+        )
+    }
+    
+    return arr;
+}
+
+var fs2 = buildFunctions2();
+
+fs2[0]();   // => 0
+fs2[1]();   // => 1
+fs2[2]();   // => 2
+```
