@@ -609,3 +609,79 @@ tellMeWhenDone(function() {
 });
 
 ```
+
+## call(), apply() and bind()
+
+```javascript
+var person = {
+    firstname: 'John',
+    lastname: 'Doe',
+    getFullName: function() {
+        
+        var fullname = this.firstname + ' ' + this.lastname;
+        return fullname;
+        
+    }
+}
+
+var logName = function() {
+  console.log('Logged: ' + this.getFullName())  
+}
+
+var logPersonName = logName.bind(person);
+logPersonName();  // => Logged: John Doe
+```
+`bind()` creates copy of function and give it an object that function can treat like `this`.
+
+
+```javascript
+var logName = function(lang1, lang2) {
+
+    console.log('Logged: ' + this.getFullName());
+    console.log('Arguments: ' + lang1 + ' ' + lang2);
+    console.log('-----------');
+    
+}
+
+var logPersonName = logName.bind(person);
+logPersonName('en');  // => Logged: John Doe / Arguments: en undefined
+```
+`call()` point to `this` and execute function, not creating a copy
+
+```javascript
+logName.call(person, 'en', 'es'); // => Logged: John Doe / Arguments: en es 
+```
+
+```javascript
+// apply() takes an array of parameters and it's ony difference from call()
+logName.apply(person, ['en', 'es']); // => Logged: John Doe / Arguments: en es
+
+(function(lang1, lang2) {
+
+    console.log('Logged: ' + this.getFullName());
+    console.log('Arguments: ' + lang1 + ' ' + lang2);
+    console.log('-----------');
+    
+}).apply(person, ['es', 'en']); // => .../ Arguments: es en
+
+// function borrowing
+var person2 = {
+    firstname: 'Jane',
+    lastname: 'Doe'
+}
+
+console.log(person.getFullName.apply(person2)); // => Logged: John Doe 
+
+// function currying
+function multiply(a, b) {
+    return a*b;   
+}
+
+var multipleByTwo = multiply.bind(this, 2); // a will be permanently set to 2
+console.log(multipleByTwo(4));  // => 8
+
+var multipleByThree = multiply.bind(this, 3); // a will be permanently 3
+console.log(multipleByThree(4));  // => 12
+```
+
+**Function currying**: creating a copy of a function but with some preset parameters. This is very useful in mathematical problems.
