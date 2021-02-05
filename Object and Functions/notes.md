@@ -685,3 +685,60 @@ console.log(multipleByThree(4));  // => 12
 ```
 
 **Function currying**: creating a copy of a function but with some preset parameters. This is very useful in mathematical problems.
+
+## Functional programming
+
+Try to not mutate data inside the functions, it can keep you from many errors. Just try to do it as high up in chain of functions as possible or to not change it at all.
+
+We can write really clean and readable code using functional programming principals.
+
+```javascript
+function mapForEach(arr, fn) {
+    
+    var newArr = [];
+    for (var i=0; i < arr.length; i++) {
+        newArr.push(
+            fn(arr[i])   
+        )
+    };
+    
+    return newArr;
+}
+
+var arr1 = [1,2,3];
+console.log(arr1);
+
+
+var arr2 = mapForEach(arr1, function(item) {
+   return item * 2; 
+});
+console.log(arr2);
+
+
+var arr3 = mapForEach(arr1, function(item) {
+   return item > 2; 
+});
+console.log(arr3);
+
+
+var checkPastLimit = function(limiter, item) {
+    return item > limiter;   
+}
+var arr4 = mapForEach(arr1, checkPastLimit.bind(this, 1));
+console.log(arr4);
+
+
+var checkPastLimitSimplified = function(limiter) {
+    return function(limiter, item) {
+        return item > limiter;   
+    }.bind(this, limiter); 
+};
+
+var arr5 = mapForEach(arr1, checkPastLimitSimplified(1));
+console.log(arr5);
+
+```
+
+**Underscore.js** - library that helps you work with arrays and collection of objects. The really neat thing about it is that it also made an effort to show how it implemented what it did.
+
+Try to reade code of Uderscore and Lodash libraries.
